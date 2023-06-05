@@ -1,2 +1,2 @@
 # Architecture-of-modern-processors
-NSU course labs
+NSU course: https://ssd.sscc.ru/ru/chair/nsu/arch
