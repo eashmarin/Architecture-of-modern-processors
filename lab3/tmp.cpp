@@ -1,0 +1,101 @@
+#include <x86intrin.h>
+#include <cstdlib>
+#include <iomanip>
+#include <iostream>
+
+const int CYCLE_COUNT = 100000;
+
+void heat_processor() {
+    const int N = 1000;
+    long *a = (long *)malloc(sizeof(long) * N * N);
+    long *b = (long *)malloc(sizeof(long) * N * N);
+
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            a[i * N + j] = i;
+        }
+    }
+
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            int index = i * N + j;
+            b[index] = 0;
+            for (int k = 0; k < N; k++) {
+                b[index] += a[i * N + k] * a[k * N + j];
+            }
+        }
+    }
+
+    free(a);
+    free(b);
+}
+
+int main(int argc, char* argv[]) {
+    if (argc < 2) {
+        std::cerr << "Wrong number of arguments\n";
+        return 1;
+    }
+
+    int k = atoi(argv[1]);
+
+    if (k < 3 || k > 100) {
+        std::cerr << "Invalid argument value: " << k << std::endl;
+        return 2;
+    }
+
+    int a = 0;
+
+    heat_processor();
+
+    long long t0 = _rdtsc();
+    for (int i = 0; i < CYCLE_COUNT; i++) {
+
+		if (i < 0) {
+ 			a = 0; 
+		}
+
+		if (i < 0) {
+ 			a = 0; 
+		}
+
+		if (i < 0) {
+ 			a = 0; 
+		}
+
+		if (i < 0) {
+ 			a = 0; 
+		}
+
+		if (i < 0) {
+ 			a = 0; 
+		}
+
+		if (i < 0) {
+ 			a = 0; 
+		}
+
+		if (i < 0) {
+ 			a = 0; 
+		}
+
+		if (i < 0) {
+ 			a = 0; 
+		}
+
+		if (i < 0) {
+ 			a = 0; 
+		}
+
+		if (i < 0) {
+ 			a = 0; 
+		}
+        if (i % k == 0 || (i - 1) % k == 0) {
+            a = 1;
+        }
+    }
+    long long t1 = _rdtsc();
+
+    std::cout << static_cast<double>(t1 - t0) / CYCLE_COUNT;
+
+    return 0;
+}
