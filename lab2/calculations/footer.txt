@@ -1,0 +1,9 @@
+    }
+    t2 = rdtsc();
+
+    printf("%lld", (t2 - t1) / N);
+
+    free(array);
+
+    return 0;
+}

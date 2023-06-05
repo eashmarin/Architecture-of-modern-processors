@@ -1,0 +1,31 @@
+#!/bin/zsh
+header=header.txt
+body=body.txt
+footer=footer.txt
+resultfile=results.csv
+codefile=tmp.c
+if [ -f $codefile ]; then
+  cat /dev/null >$resultfile
+  cat /dev/null >$body
+
+  for ((i = 1; i <= 400; i++)) do
+    printf "\t\tasm(\"nop\");\n" >>$body
+   done
+
+  for ((i = 401; i <= 500; i++)); do
+    cat /dev/null >$codefile
+
+    printf "\t\tasm(\"nop\");\n" >>$body
+
+    cat $header >>$codefile
+    cat $body >>$codefile
+    cat $footer >>$codefile
+
+    printf "$i," >>$resultfile
+
+    gcc tmp.c -o tmp -O0
+    ./tmp >>$resultfile
+
+    printf "\n" >>$resultfile
+  done
+fi
